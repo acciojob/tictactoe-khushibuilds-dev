@@ -1,4 +1,3 @@
-//your JS code here. If required.
 const submitBtn = document.getElementById("submit");
 const playerForm = document.getElementById("player-form");
 const gameBoard = document.getElementById("game-board");
@@ -12,18 +11,11 @@ let currentSymbol = "x";
 let gameActive = true;
 let boardState = ["", "", "", "", "", "", "", "", ""];
 
-const winningConditions = [,
-	[3, 4, 5],
-,
-	[0, 3, 6],
-,
-	[2, 5, 8],
-,
-	[2, 4, 6]
+const winningConditions = [, // Top row, // Middle row, // Bottom row, // Left column, // Middle column, // Right column, // Diagonal top-left to bottom-right
+	[2, 4, 6]  // Diagonal top-right to bottom-left
 ];
 
 submitBtn.addEventListener("click", () => {
-	// Supports both id="player1" and id="player-1"
 	const p1Input = document.getElementById("player-1") || document.getElementById("player1");
 	const p2Input = document.getElementById("player-2") || document.getElementById("player2");
 
@@ -80,14 +72,13 @@ cells.forEach((cell) => {
 });
 
 function checkWin() {
-	for (let condition of winningConditions) {
-		const [a, b, c] = condition;
+	for (let i = 0; i < winningConditions.length; i++) {
+		const [a, b, c] = winningConditions[i];
 		if (
 			boardState[a] !== "" &&
 			boardState[a] === boardState[b] &&
 			boardState[a] === boardState[c]
 		) {
-			// Highlight winning cells
 			document.getElementById(String(a + 1)).style.backgroundColor = "#800080";
 			document.getElementById(String(b + 1)).style.backgroundColor = "#800080";
 			document.getElementById(String(c + 1)).style.backgroundColor = "#800080";
